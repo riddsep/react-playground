@@ -1,22 +1,21 @@
 import { useState, useEffect } from "react";
-
-const Child = () => {
-  // Pass a function that React will run for you
-  useEffect(() => {
-    console.log("I am rendering");
-    // Pass an array of items to track changes of
-    return () => console.log("I am unmounting");
-  }, []);
-
-  return <p>I am the child</p>;
-};
-
 export const PlayGround = () => {
-  const [showChild, setShowChild] = useState(true);
+  const [height, setHeight] = useState(window.innerHeight);
+  const [width, setWidth] = useState(window.innerWidth);
+  useEffect(() => {
+    function resizeHandler() {
+      setHeight(window.innerHeight);
+      setWidth(window.innerWidth);
+    }
+    // This code will cause a memory leak, more on that soon
+    window.addEventListener("resize", resizeHandler);
+
+    return () => window.removeEventListener("resize", resizeHandler);
+  }, []);
   return (
     <div>
-      <button onClick={() => setShowChild(!showChild)}>Toggle Child</button>
-      {showChild && <Child />}
+      <p>Height: {height}</p>
+      <p>Width: {width}</p>
     </div>
   );
 };
