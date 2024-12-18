@@ -8,7 +8,7 @@ function AlarmScreen({ snooze, disable }) {
       // In production, this would be 10 minutes
       snooze();
     }, 10 * 1000);
-  }, []);
+  }, [snooze]);
   return (
     <div>
       <p>Time to wake up!</p>
