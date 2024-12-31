@@ -1,5 +1,5 @@
 import { useState } from "react";
-import createCustomer from "./customerSlice";
+import { createCustomer } from "./customerSlice";
 import { useDispatch } from "react-redux";
 
 function Customer() {
